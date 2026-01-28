@@ -1,4 +1,3 @@
-
 package main
 
 import (
@@ -27,14 +26,17 @@ type MediaJSONMinimal struct {
 func main() {
 	urls := parseUrls()
 
+	i := 1
+	fmt.Println("\n\n=== starting download ===")
 	for _, url := range urls {
+		fmt.Println(fmt.Sprintf("downloading from: %s (%d/%d)", url, i, len(urls)))
 		downloadMausEpisode(url)
+		i++
 	}
-
+	fmt.Println("=== finished download ===")
 }
 
 func parseUrls() []string {
-
 	urlsFlag := flag.String("urls", "", "Comma-separated list of URLs")
 	flag.Parse()
 
